@@ -14,7 +14,6 @@ const Logo = styled.h1`
         background: ${props => props.theme.red};
         color: white;
         transform: uppercase;
-        text-decoration: none;
     }
     @media(max-width: ${props => props.theme.breakpoint}) {
         margin: 0;
