@@ -46,6 +46,23 @@ class CreateItem extends Component {
         });
     }
 
+    uploadFile = async e => {
+        const { files } = e.target;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'sickfits');
+    
+        const res = await fetch('https://api.cloudinary.com/v1_1/andomain/image/upload', {
+            method: 'POST',
+            body: data,
+        });
+        const file = await res.json();
+        this.setState({
+            image: file.secure_url,
+            largeImage: file.eager[0].secure_url,
+        })
+    }
+
     render() {
         return (
             <Mutation
@@ -65,6 +82,18 @@ class CreateItem extends Component {
                     }}>
                         <Error error={error} />
                         <fieldset disabled={loading} aria-busy={loading}>
+                        <label htmlFor="file">
+                                File
+                                <input
+                                    type="file"
+                                    id="file`"
+                                    name="file`"
+                                    placeholder="File`"
+                                    required
+                                    onChange={this.uploadFile}
+                                />
+                                {this.state.image && <img width="200" src={this.state.image} alt="Preview image" />}
+                            </label>
                             <label htmlFor="title">
                                 Title
                                 <input
