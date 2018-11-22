@@ -10,14 +10,14 @@ import formatMoney from '../lib/formatMoney';
 
 class Item extends Component {
     render() {
-        const {item} = this.props;
+        const { item } = this.props;
         return (
             <ItemStyles>
                 {item.image && <img src={item.image} alt={item.title} />}
                 <Title>
                     <Link href={{
                         pathname: '/item',
-                        query: { id: item.id} 
+                        query: { id: item.id }
                     }}>
                         <a>{item.title}</a>
                     </Link>
@@ -27,7 +27,7 @@ class Item extends Component {
                 <div className="buttonList">
                     <Link href={{
                         pathname: "update",
-                        query: item.id,
+                        query: { id: item.id },
                     }}>
                         <a>Edit ✏️</a>
                     </Link>
